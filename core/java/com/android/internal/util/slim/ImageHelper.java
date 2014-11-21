@@ -38,109 +38,109 @@ import android.util.TypedValue;
 
 public class ImageHelper {
 
-	public static Bitmap getColoredBitmap(Drawable d, int color) {
-		if (d == null) {
-			return null;
-		}
-		Bitmap colorBitmap = ((BitmapDrawable) d).getBitmap();
-		Bitmap grayscaleBitmap = toGrayscale(colorBitmap);
-		Paint pp = new Paint();
-		pp.setAntiAlias(true);
-		PorterDuffColorFilter frontFilter =
-			new PorterDuffColorFilter(color, Mode.MULTIPLY);
-		pp.setColorFilter(frontFilter);
-		Canvas cc = new Canvas(grayscaleBitmap);
-		final Rect rect = new Rect(0, 0, grayscaleBitmap.getWidth(), grayscaleBitmap.getHeight());
-		cc.drawBitmap(grayscaleBitmap, rect, rect, pp);
-		return grayscaleBitmap;
-	}
+    public static Bitmap getColoredBitmap(Drawable d, int color) {
+        if (d == null) {
+            return null;
+        }
+        Bitmap colorBitmap = ((BitmapDrawable) d).getBitmap();
+        Bitmap grayscaleBitmap = toGrayscale(colorBitmap);
+        Paint pp = new Paint();
+        pp.setAntiAlias(true);
+        PorterDuffColorFilter frontFilter =
+            new PorterDuffColorFilter(color, Mode.MULTIPLY);
+        pp.setColorFilter(frontFilter);
+        Canvas cc = new Canvas(grayscaleBitmap);
+        final Rect rect = new Rect(0, 0, grayscaleBitmap.getWidth(), grayscaleBitmap.getHeight());
+        cc.drawBitmap(grayscaleBitmap, rect, rect, pp);
+        return grayscaleBitmap;
+    }
 
-	private static Bitmap toGrayscale(Bitmap bmpOriginal) {
-		int width, height;
-		height = bmpOriginal.getHeight();
-		width = bmpOriginal.getWidth();
+    private static Bitmap toGrayscale(Bitmap bmpOriginal) {
+        int width, height;
+        height = bmpOriginal.getHeight();
+        width = bmpOriginal.getWidth();
 
-		Bitmap bmpGrayscale = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-		Canvas c = new Canvas(bmpGrayscale);
-		Paint paint = new Paint();
-		paint.setAntiAlias(true);
-		ColorMatrix cm = new ColorMatrix();
-		final Rect rect = new Rect(0, 0, width, height);
-		cm.setSaturation(0);
+        Bitmap bmpGrayscale = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(bmpGrayscale);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        ColorMatrix cm = new ColorMatrix();
+        final Rect rect = new Rect(0, 0, width, height);
+        cm.setSaturation(0);
 
-		ColorMatrixColorFilter f = new ColorMatrixColorFilter(cm);
-		paint.setColorFilter(f);
-		c.drawBitmap(bmpOriginal, rect, rect, paint);
-		return bmpGrayscale;
-	}
+        ColorMatrixColorFilter f = new ColorMatrixColorFilter(cm);
+        paint.setColorFilter(f);
+        c.drawBitmap(bmpOriginal, rect, rect, paint);
+        return bmpGrayscale;
+    }
 
-	public static Drawable resize(Context context, Drawable image, int size) {
-		if (image == null || context == null) {
-			return null;
-		}
+    public static Drawable resize(Context context, Drawable image, int size) {
+        if (image == null || context == null) {
+            return null;
+        }
 
-	int newSize = Converter.dpToPx(context, size);
-	Bitmap bitmap = ((BitmapDrawable) image).getBitmap();
-	Bitmap scaledBitmap = Bitmap.createBitmap(newSize, newSize, Config.ARGB_8888);
+        int newSize = Converter.dpToPx(context, size);
+        Bitmap bitmap = ((BitmapDrawable) image).getBitmap();
+        Bitmap scaledBitmap = Bitmap.createBitmap(newSize, newSize, Config.ARGB_8888);
 
-	float ratioX = newSize / (float) bitmap.getWidth();
-	float ratioY = newSize / (float) bitmap.getHeight();
-	float middleX = newSize / 2.0f;
-	float middleY = newSize / 2.0f;
+        float ratioX = newSize / (float) bitmap.getWidth();
+        float ratioY = newSize / (float) bitmap.getHeight();
+        float middleX = newSize / 2.0f;
+        float middleY = newSize / 2.0f;
 
-	final Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG);
-	paint.setAntiAlias(true);
+        final Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG);
+        paint.setAntiAlias(true);
 
-	Matrix scaleMatrix = new Matrix();
-	scaleMatrix.setScale(ratioX, ratioY, middleX, middleY);
+        Matrix scaleMatrix = new Matrix();
+        scaleMatrix.setScale(ratioX, ratioY, middleX, middleY);
 
-	Canvas canvas = new Canvas(scaledBitmap);
-	canvas.setMatrix(scaleMatrix);
-	canvas.drawBitmap(bitmap, middleX - bitmap.getWidth() / 2,
-		middleY - bitmap.getHeight() / 2, paint);
-	return new BitmapDrawable(context.getResources(), scaledBitmap);
-}
+        Canvas canvas = new Canvas(scaledBitmap);
+        canvas.setMatrix(scaleMatrix);
+        canvas.drawBitmap(bitmap, middleX - bitmap.getWidth() / 2,
+                middleY - bitmap.getHeight() / 2, paint);
+        return new BitmapDrawable(context.getResources(), scaledBitmap);
+    }
 
-public static Bitmap getRoundedCornerBitmap(Bitmap bitmap) {
-	if (bitmap == null) {
-		return null;
-	}
-	Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(),
-		Config.ARGB_8888);
-	Canvas canvas = new Canvas(output);
+    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap) {
+        if (bitmap == null) {
+            return null;
+        }
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(),
+                Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
 
-	final int color = 0xff424242;
-	final Paint paint = new Paint();
-	final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-	final RectF rectF = new RectF(rect);
-	final float roundPx = 24;
-	paint.setAntiAlias(true);
-	canvas.drawARGB(0, 0, 0, 0);
-	paint.setColor(color);
-	canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
-	paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-	canvas.drawBitmap(bitmap, rect, rect, paint);
-	return output;
-}
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+        final float roundPx = 24;
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+        return output;
+    }
 
-public static Bitmap getCircleBitmap(Bitmap bitmap) {
-	if (bitmap == null) {
-		return null;
-	}
-	int width = bitmap.getWidth();
-	int height = bitmap.getHeight();
+    public static Bitmap getCircleBitmap(Bitmap bitmap) {
+        if (bitmap == null) {
+            return null;
+        }
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
 
-	Bitmap output = Bitmap.createBitmap(width, height,
-		Config.ARGB_8888);
-	Canvas canvas = new Canvas(output);
+        Bitmap output = Bitmap.createBitmap(width, height,
+                Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
 
-	BitmapShader shader = new BitmapShader(bitmap, TileMode.CLAMP, TileMode.CLAMP);
-	final Paint paint = new Paint();
-	paint.setAntiAlias(true);
-	paint.setShader(shader);
+        BitmapShader shader = new BitmapShader(bitmap,  TileMode.CLAMP, TileMode.CLAMP);
+        final Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setShader(shader);
 
-	canvas.drawCircle(width/2, height/2, width/2, paint);
+        canvas.drawCircle(width/2, height/2, width/2, paint);
 
-	return output;
-	}
+        return output;
+    }
 }

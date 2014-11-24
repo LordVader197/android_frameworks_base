@@ -1258,6 +1258,19 @@ public class NotificationManagerService extends SystemService {
         }
 
         @Override
+        public void setShowNotificationForPackageOnKeyguard(
+                String pkg, int uid, int status) {
+            checkCallerIsSystem();
+            mRankingHelper.setShowNotificationForPackageOnKeyguard(pkg, uid, status);
+            savePolicyFile();
+        }
+
+        @Override
+        public int getShowNotificationForPackageOnKeyguard(String pkg, int uid) {
+            return mRankingHelper.getShowNotificationForPackageOnKeyguard(pkg, uid);
+        }
+
+        @Override
         public void setHeadsUpNotificationsEnabledForPackage(
                 String pkg, int uid, int headsUp) {
             // enforce() will ensure the calling uid has the correct permission
@@ -1276,6 +1289,7 @@ public class NotificationManagerService extends SystemService {
                     "NotificationManagerService.getHeadsUpNotificationsEnabledForPackage");
             return mRankingHelper.getHeadsUpNotificationsEnabledForPackage(pkg, uid);
         }
+
 
         /**
          * System-only API for getting a list of current (i.e. not cleared) notifications.

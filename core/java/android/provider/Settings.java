@@ -3182,6 +3182,12 @@ public final class Settings {
          */
         public static final String EGG_MODE = "egg_mode";
 
+         /**
+         * Recents Show/Hide Search Bar
+         * @hide
+         */
+        public static final String RECENTS_SHOW_HIDE_SEARCH_BAR = "recents_show_hide_search_bar";
+
         /**
          * Display style of the status bar battery information
          * 0: Display the battery an icon in portrait mode

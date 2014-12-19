@@ -4974,22 +4974,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         MediaSessionLegacyHelper.getHelper(mContext)
                                 .sendVolumeKeyEvent(event, true);
                         break;
-
-                    } else {
-                        if (mVolumeMusicControls && !down) {
-                            mHandler.removeMessages(MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK);
-                            if (mIsLongPress) {
-                                break;
-                            }
-                        }
-                        if (!isWakeKey) {
-                            // If we aren't passing to the user and no one else
-                            // handled it send it to the session manager to figure
-                            // out.
-                            MediaSessionLegacyHelper.getHelper(mContext)
-                                    .sendVolumeKeyEvent(KeyEvent.changeAction(event,
-                                    KeyEvent.ACTION_DOWN), true);
-                        }
                     }
                 }
                 break;

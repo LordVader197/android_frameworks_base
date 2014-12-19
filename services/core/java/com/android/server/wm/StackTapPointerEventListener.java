@@ -62,8 +62,6 @@ public class StackTapPointerEventListener implements PointerEventListener {
                     }
 
                     if ((motionEvent.getEventTime() - motionEvent.getDownTime()) > TAP_TIMEOUT_MSEC
-                            || (motionEvent.getX(index) - mDownX) > mMotionSlop
-                            || (motionEvent.getY(index) - mDownY) > mMotionSlop) {
                             || index < 0
                             || Math.abs(motionEvent.getX(index) - mDownX) > mMotionSlop
                             || Math.abs(motionEvent.getY(index) - mDownY) > mMotionSlop) {
@@ -81,7 +79,8 @@ public class StackTapPointerEventListener implements PointerEventListener {
                     final int y = (int)motionEvent.getY(index);
                     if ((motionEvent.getEventTime() - motionEvent.getDownTime())
                             < TAP_TIMEOUT_MSEC
-                            && (x - mDownX) < mMotionSlop && (y - mDownY) < mMotionSlop
+                            && Math.abs(x - mDownX) < mMotionSlop
+                            && Math.abs(y - mDownY) < mMotionSlop
                             && !mTouchExcludeRegion.contains(x, y)) {
                         mService.mH.obtainMessage(H.TAP_OUTSIDE_STACK, x, y,
                                 mDisplayContent).sendToTarget();

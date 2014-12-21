@@ -3045,6 +3045,18 @@ public final class Settings {
                 "lockscreen_shortcuts_longpress";       
 
         /**
+         * Defines global heads up snooze time if user want to snooze it.
+         * @hide
+         */
+        public static final String HEADS_UP_SNOOZE_TIME = "heads_up_snooze_time";
+
+        /**
+         * Defines the global heads up notification decay
+         * @hide
+         */
+        public static final String HEADS_UP_NOTIFCATION_DECAY = "heads_up_notification_decay";
+         
+        /**
          * Action to perform when the home key is double-tapped.
          * (Default can be configured via config_doubleTapOnHomeBehavior)
          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
@@ -7757,7 +7769,7 @@ public final class Settings {
          * <P>Type: TEXT</P>
          */
         public static final String INTENT = "intent";
-
+       
         /**
          * Optional shortcut character associated with this bookmark.
          * <P>Type: INTEGER</P>

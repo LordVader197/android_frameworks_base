@@ -14,69 +14,68 @@
 * limitations under the License.
 */
 
-
 package com.android.internal.util.slim;
 
 public class ActionConfig {
 
-	private String mClickAction;
-	private String mClickActionDescription;
-	private String mLongpressAction;
-	private String mLongpressActionDescription;
-	private String mIconUri;
-	
-	public ActionConfig(String clickAction, String clickActionDescription,
-					String longpressAction, String longpressActionDescription, String iconUri) {
-		mClickAction = clickAction;
-		mClickActionDescription = clickActionDescription;
-		mLongpressAction = longpressAction;
-		mLongpressActionDescription = longpressActionDescription;
-		mIconUri = iconUri;
-	}
+    private String mClickAction;
+    private String mClickActionDescription;
+    private String mLongpressAction;
+    private String mLongpressActionDescription;
+    private String mIconUri;
 
-	@Override
-	public String toString() {
-		return mClickActionDescription;
-	}
+    public ActionConfig(String clickAction, String clickActionDescription,
+                    String longpressAction, String longpressActionDescription, String iconUri) {
+        mClickAction = clickAction;
+        mClickActionDescription = clickActionDescription;
+        mLongpressAction = longpressAction;
+        mLongpressActionDescription = longpressActionDescription;
+        mIconUri = iconUri;
+    }
 
-	public String getClickAction() {
-		return mClickAction;
-	}
+    @Override
+    public String toString() {
+        return mClickActionDescription;
+    }
 
-	public String getClickActionDescription() {
-		return mClickActionDescription;
-	}
+    public String getClickAction() {
+        return mClickAction;
+    }
 
-	public String getLongpressAction() {
-		return mLongpressAction;
-	}
+    public String getClickActionDescription() {
+        return mClickActionDescription;
+    }
 
-	public String getLongpressActionDescription() {
-		return mLongpressActionDescription;
-	}
+    public String getLongpressAction() {
+        return mLongpressAction;
+    }
 
-	public String getIcon() {
-		return mIconUri;
-	}
-	
-	public void setClickAction(String action) {
-		mClickAction = action;
-	}
+    public String getLongpressActionDescription() {
+        return mLongpressActionDescription;
+    }
 
-	public void setClickActionDescription(String description) {
-		mClickActionDescription = description;
-	}
-	
-	public void setLongpressAction(String action) {
-		mLongpressAction = action;
-	}
+    public String getIcon() {
+        return mIconUri;
+    }
 
-	public void setLongpressActionDescription(String description) {
-		mLongpressActionDescription = description;
-	}
-	
-	public void setIcon(String iconUri) {
-		mIconUri = iconUri;
-	}
+    public void setClickAction(String action) {
+        mClickAction = action;
+    }
+
+    public void setClickActionDescription(String description) {
+        mClickActionDescription = description;
+    }
+
+    public void setLongpressAction(String action) {
+        mLongpressAction = action;
+    }
+
+    public void setLongpressActionDescription(String description) {
+        mLongpressActionDescription = description;
+    }
+
+    public void setIcon(String iconUri) {
+        mIconUri = iconUri;
+    }
 
 }

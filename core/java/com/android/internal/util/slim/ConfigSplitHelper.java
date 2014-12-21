@@ -14,7 +14,6 @@
 * limitations under the License.
 */
 
-
 package com.android.internal.util.slim;
 
 import android.content.Context;
@@ -26,74 +25,74 @@ import java.util.ArrayList;
 
 public class ConfigSplitHelper {
 
-	private static final String SETTINGS_METADATA_NAME = "com.android.settings";
+    private static final String SETTINGS_METADATA_NAME = "com.android.settings";
 
-	public static ArrayList<ActionConfig> getActionConfigValues(Context context, String config,
-				String values, String entries, boolean isShortcut) {
-		// init vars to fill with them later the config values
-		int counter = 0;
-		ArrayList<ActionConfig> actionConfigList = new ArrayList<ActionConfig>();
-		ActionConfig actionConfig = null;
+    public static ArrayList<ActionConfig> getActionConfigValues(Context context, String config,
+                String values, String entries, boolean isShortcut) {
+        // init vars to fill with them later the config values
+        int counter = 0;
+        ArrayList<ActionConfig> actionConfigList = new ArrayList<ActionConfig>();
+        ActionConfig actionConfig = null;
 
-		PackageManager pm = context.getPackageManager();
-		Resources settingsResources = null;
-		try {
-			settingsResources = pm.getResourcesForApplication(SETTINGS_METADATA_NAME);
-		} catch (Exception e) {
-			Log.e("ConfigSplitHelper", "can't access settings resources",e);
-		}
+        PackageManager pm = context.getPackageManager();
+        Resources settingsResources = null;
+        try {
+            settingsResources = pm.getResourcesForApplication(SETTINGS_METADATA_NAME);
+        } catch (Exception e) {
+            Log.e("ConfigSplitHelper", "can't access settings resources",e);
+        }
 
-		// Split out the config to work with and add to the list
-		for (String configValue : config.split("\\" + ActionConstants.ACTION_DELIMITER)) {
-			counter++;
-			if (counter == 1) {
-				actionConfig = new ActionConfig(configValue,
-							AppHelper.getProperSummary(context, pm, settingsResources,
-							configValue, values, entries), null, null, null);
-			}
-			if (counter == 2) {
-				if (isShortcut) {
-					actionConfig.setIcon(configValue);
-					actionConfigList.add(actionConfig);
-					//reset counter due that shortcut iteration of one action is finished
-					counter = 0;
-				} else {
-					actionConfig.setLongpressAction(configValue);
-					actionConfig.setLongpressActionDescription(
-							AppHelper.getProperSummary(context, pm, settingsResources,
-							configValue, values, entries));
-				}
-			}
-			if (counter == 3) {
-				actionConfig.setIcon(configValue);
-				actionConfigList.add(actionConfig);
-				//reset counter due that iteration of full config action is finished
-				counter = 0;
-			}
-		}
+        // Split out the config to work with and add to the list
+        for (String configValue : config.split("\\" + ActionConstants.ACTION_DELIMITER)) {
+            counter++;
+            if (counter == 1) {
+                actionConfig = new ActionConfig(configValue,
+                            AppHelper.getProperSummary(context, pm, settingsResources,
+                            configValue, values, entries), null, null, null);
+            }
+            if (counter == 2) {
+                if (isShortcut) {
+                    actionConfig.setIcon(configValue);
+                    actionConfigList.add(actionConfig);
+                    //reset counter due that shortcut iteration of one action is finished
+                    counter = 0;
+                } else {
+                    actionConfig.setLongpressAction(configValue);
+                    actionConfig.setLongpressActionDescription(
+                            AppHelper.getProperSummary(context, pm, settingsResources,
+                            configValue, values, entries));
+                }
+            }
+            if (counter == 3) {
+                actionConfig.setIcon(configValue);
+                actionConfigList.add(actionConfig);
+                //reset counter due that iteration of full config action is finished
+                counter = 0;
+            }
+        }
 
-		return actionConfigList;
-	}
+        return actionConfigList;
+    }
 
-		public static String setActionConfig(
-			ArrayList<ActionConfig> actionConfigs, boolean isShortcut) {
-		String finalConfig = "";
-		ActionConfig actionConfig;
+    public static String setActionConfig(
+            ArrayList<ActionConfig> actionConfigs, boolean isShortcut) {
+        String finalConfig = "";
+        ActionConfig actionConfig;
 
-		for (int i = 0; i < actionConfigs.size(); i++) {
-			if (i != 0) {
-				finalConfig += ActionConstants.ACTION_DELIMITER;
-			}
-			actionConfig = actionConfigs.get(i);
-			finalConfig += actionConfig.getClickAction() + ActionConstants.ACTION_DELIMITER;
-			if (!isShortcut) {
-				finalConfig += actionConfig.getLongpressAction()
-					+ ActionConstants.ACTION_DELIMITER;
-			}
-			finalConfig += actionConfig.getIcon();
-		}
-	
-		return finalConfig;
-	}
+        for (int i = 0; i < actionConfigs.size(); i++) {
+            if (i != 0) {
+                finalConfig += ActionConstants.ACTION_DELIMITER;
+            }
+            actionConfig = actionConfigs.get(i);
+            finalConfig += actionConfig.getClickAction() + ActionConstants.ACTION_DELIMITER;
+            if (!isShortcut) {
+                finalConfig += actionConfig.getLongpressAction()
+                    + ActionConstants.ACTION_DELIMITER;
+            }
+            finalConfig += actionConfig.getIcon();
+        }
+
+        return finalConfig;
+    }
 
 }

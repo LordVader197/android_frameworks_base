@@ -2896,11 +2896,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     @Override // CommandQueue
-    public void showCustomIntentAfterKeyguard(Intent intent) {
-        startActivityDismissingKeyguard(intent, false, false);
-    }
-
-    @Override // CommandQueue
     public void setWindowState(int window, int state) {
         boolean showing = state == WINDOW_STATE_SHOWING;
         if (mStatusBarWindow != null
@@ -4426,17 +4421,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             if (hijackRecentsLongPress) {
                 ActionUtils.switchToLastApp(mContext, mCurrentUserId);
-                final ActivityManager am =
-                        (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
-                ActivityManager.RunningTaskInfo lastTask = getLastTask(am);
-
-                if (lastTask != null) {
-                    if (DEBUG) Log.d(TAG, "switching to " + lastTask.topActivity.getPackageName());
-                    final ActivityOptions opts = ActivityOptions.makeCustomAnimation(mContext,
-                            R.anim.last_app_in, R.anim.last_app_out);
-                    am.moveTaskToFront(lastTask.id, ActivityManager.MOVE_TASK_NO_USER_ACTION,
-                            opts.toBundle());
-                }
             }
         } catch (RemoteException e) {
             Log.d(TAG, "Unable to reach activity manager", e);

@@ -2076,12 +2076,6 @@ public final class Settings {
          */
         public static final String BUTTON_BACKLIGHT_TIMEOUT = "button_backlight_timeout";
 
-        /** Whether to allow one finger quick settings expansion on the right side of the statusbar.
-         *
-         * @hide
-         */
-        public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
-
         /**
          * Control whether the process CPU usage meter should be shown.
          *
@@ -2502,6 +2496,18 @@ public final class Settings {
         */
         public static final String DEV_FORCE_SHOW_NAVBAR = "dev_force_show_navbar";
 
+		/** Whether to allow one finger quick settings expansion on the right side of the statusbar.
+		 *
+		 * @hide
+		 */
+		public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
+
+		/**
+		 * Quick Settings Smart Pulldown
+		 *
+		 * @hide
+		 */
+		public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
 
         /**
          * Date format string
@@ -5439,6 +5445,12 @@ public final class Settings {
          */
         public static final String SMS_DEFAULT_APPLICATION = "sms_default_application";
 
+		/**
+		 * Whether user is allowed to pull down quick settings on secure keyguard.
+		 * @hide
+		 */
+		public static final String STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD = "status_bar_locked_on_secure_keyguard";
+
         /**
          * Name of a package that the current user has explicitly allowed to see all of that
          * user's notifications.
@@ -5618,7 +5630,8 @@ public final class Settings {
             SLEEP_TIMEOUT,
             PRIVACY_GUARD_DEFAULT,
             ADVANCED_REBOOT,
-            DEVELOPMENT_SHORTCUT
+			DEVELOPMENT_SHORTCUT,
+			STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD
         };
 
         /**

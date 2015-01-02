@@ -58,7 +58,7 @@
 
     <!-- How many icons may be shown at once in the system bar. Includes any
          slots that may be reused for things like IME control. -->
-    <integer name="config_maxNotificationIcons">5</integer>
+    <integer name="config_maxNotificationIcons">3</integer>
 
     <!-- Show phone (voice) signal strength instead of data in mobile RSSI. -->
     <bool name="config_showPhoneRSSIForData">false</bool>
@@ -146,7 +146,7 @@
     <integer name="heads_up_snooze_time">300000</integer>
 
     <!-- Show emergency call label only without carrier label on expanded notification area -->
-    <bool name="config_showEmergencyCallLabelOnly">true</bool>
+    <bool name="config_showEmergencyCallLabelOnly">false</bool>
     <bool name="config_showDataConnectionView">true</bool>
     <bool name="config_disableWifiAndBluetooth">false</bool>
 
@@ -226,7 +226,7 @@
     <!-- Set to true to enable the classic notification ticker that scrolls
          Notification.tickerText across the status bar for what seems like an
          eternity. -->
-    <bool name="enable_ticker">false</bool>
+    <bool name="enable_ticker">true</bool>
 
     <!-- Set to true to enable the user switcher on the keyguard. -->
     <bool name="config_keyguardUserSwitcher">false</bool>

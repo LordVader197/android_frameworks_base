@@ -20,6 +20,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ import com.android.systemui.statusbar.policy.NetworkController.NetworkSignalChan
 public class CellularTile extends QSTile<QSTile.SignalState> {
     private static final Intent CELLULAR_SETTINGS = new Intent().setComponent(new ComponentName(
             "com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
+    private static final Intent WIRELESS_SETTINGS = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
 
     private final NetworkController mController;
     private final CellularDetailAdapter mDetailAdapter;
@@ -80,6 +82,11 @@ public class CellularTile extends QSTile<QSTile.SignalState> {
     }
 
     @Override
+    protected void handleLongClick() {
+        mHost.startSettingsActivity(WIRELESS_SETTINGS);
+    }
+
+    @Override
     protected void handleUpdateState(SignalState state, Object arg) {
         state.visible = mController.hasMobileDataFeature();
         if (!state.visible) return;
@@ -93,7 +100,7 @@ public class CellularTile extends QSTile<QSTile.SignalState> {
                 : R.drawable.ic_qs_signal_no_signal;
         state.isOverlayIconWide = cb.isDataTypeIconWide;
         state.autoMirrorDrawable = !cb.noSim;
-        state.overlayIconId = cb.enabled && (cb.dataTypeIconId > 0) && !cb.wifiConnected
+        state.overlayIconId = cb.enabled && (cb.dataTypeIconId > 0)
                 ? cb.dataTypeIconId
                 : 0;
         state.filter = state.iconId != R.drawable.ic_qs_no_sim;

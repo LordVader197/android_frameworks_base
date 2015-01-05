@@ -360,6 +360,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     private boolean mShowCarrierInPanel = false;
 
+	private boolean mRecreating = false;
+
     // position
     int[] mPositionTmp = new int[2];
     boolean mExpandedVisible;
@@ -939,6 +941,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         } catch (RemoteException ex) {
             // no window manager? good luck with that
         }
+
+		 if (mRecreating) {
+			} else {
+				addAppCircleSidebar();
+			}
 
         // figure out which pixel-format to use for the status bar.
         mPixelFormat = PixelFormat.OPAQUE;
@@ -1659,7 +1666,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         } else {
             // usual case: status bar visible & not immersive
-
             // show the ticker if there isn't already a heads up
             if (mHeadsUpNotificationView.getEntry() == null) {
                 tick(notification, true);

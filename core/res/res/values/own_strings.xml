@@ -42,7 +42,8 @@
 
     <!-- label for item that opens the profile choosing dialog -->
     <string name="global_action_choose_profile">Profile</string>
-
+    <!-- label for item that screenshots in phone options dialog -->
+    <string name="global_action_screenshot">Screenshot</string>
 
     <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permgrouplab_security">Security</string>
@@ -120,6 +121,7 @@
     <string name="app_ops_access_notifications">read your notifications</string>
     <string name="app_ops_activate_vpn">activate a VPN</string>
     <string name="app_ops_alarm_wakeup">wake up the device</string>
+    <string name="app_ops_su">get Superuser access</string>
     <string name="app_ops_auto_start">start at power up</string>
     <string name="app_ops_delete_call_log">delete your call log</string>
     <string name="app_ops_delete_contacts">delete your contacts</string>

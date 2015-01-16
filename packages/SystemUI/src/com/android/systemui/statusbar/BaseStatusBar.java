@@ -234,6 +234,9 @@ public abstract class BaseStatusBar extends SystemUI implements
     private RecentsComponent mRecents;
 
     protected int mZenMode;
+    
+    private ArrayList<String> mDndList;
+    private ArrayList<String> mBlacklist;
 
 	protected AppCircleSidebar mAppCircleSidebar;
 
@@ -2107,8 +2110,6 @@ public abstract class BaseStatusBar extends SystemUI implements
         boolean isAllowed = notification.extras.getInt(Notification.EXTRA_AS_HEADS_UP,
                 Notification.HEADS_UP_ALLOWED) != Notification.HEADS_UP_NEVER;
         boolean hasTicker = mHeadsUpTicker && !TextUtils.isEmpty(notification.tickerText);
-        boolean isAllowed = notification.extras.getInt(Notification.EXTRA_AS_HEADS_UP,
-                Notification.HEADS_UP_ALLOWED) != Notification.HEADS_UP_NEVER;
         boolean isOngoing = sbn.isOngoing();
         boolean accessibilityForcesLaunch = isFullscreen
                 && mAccessibilityManager.isTouchExplorationEnabled();

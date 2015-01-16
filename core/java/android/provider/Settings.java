@@ -2204,13 +2204,6 @@ public final class Settings {
          */
         public static final String VOLUME_SYSTEM = "volume_system";
 
-		/**
-		 * Defines the status and navigation bar color is battery safe mode is enabled.
-		 *
-		 * @hide
-		 */
-		public static final String BATTERY_SAVER_MODE_COLOR = "battery_save_mode_color";
-
         /**
          * Voice call volume. This is used internally, changing this value will
          * not change the volume. See AudioManager.
@@ -2561,19 +2554,6 @@ public final class Settings {
         * @hide
         */
         public static final String DEV_FORCE_SHOW_NAVBAR = "dev_force_show_navbar";
-
-		/** Whether to allow one finger quick settings expansion on the right side of the statusbar.
-		 *
-		 * @hide
-		 */
-		public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
-
-		/**
-		 * Quick Settings Smart Pulldown
-		 *
-		 * @hide
-		 */
-		public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
 
         /**
          * Date format string
@@ -3105,35 +3085,13 @@ public final class Settings {
          * 8 - Last app
          * @hide
          */
-        public static final String KEY_HOME_LONG_PRESS_ACTION = "key_home_long_press_action";
-       
-        
-        /**
-         * Defines the shortcuts to be shown on lockscreen
-         * Usage is like this: target:icon|target:icon|target:icon
-         * if :icon is not set, default application icon will be used
-         * @hide
-         */
-        public static final String LOCKSCREEN_SHORTCUTS = "lockscreen_shortcuts";
-
-        /**
-         * Whether shorcuts open with normal or longpress
-         * @hide
-         */
-        public static final String LOCKSCREEN_SHORTCUTS_LONGPRESS =
-                "lockscreen_shortcuts_longpress";       
+        public static final String KEY_HOME_LONG_PRESS_ACTION = "key_home_long_press_action";      
 
         /**
          * Defines global heads up snooze time if user want to snooze it.
          * @hide
          */
         public static final String HEADS_UP_SNOOZE_TIME = "heads_up_snooze_time";
-
-        /**
-         * Defines the global heads up notification decay
-         * @hide
-         */
-        public static final String HEADS_UP_NOTIFCATION_DECAY = "heads_up_notification_decay";
          
         /**
          * Action to perform when the home key is double-tapped.
